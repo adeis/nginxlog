@@ -1,12 +1,12 @@
 <?php
 $rootPath = "/var/log/nginx/";
-$logFile = '/var/log/nginx/access.log';
+$logFile = $rootPath.'access.log';
 $limit = $_GET["limit"] ?? 100;
 if(isset($_GET["file"])) {
     $file = $_GET["file"] ?? "access.log";
     $file = str_replace("/", "", $file);
     $file = str_replace("..", "", $file);
-    $logFile = '/var/log/nginx/'.$file;
+    $logFile = $rootPath.$file;
 }
 if(!file_exists($logFile)) {
     die("$logFile Log not found");
@@ -20,7 +20,6 @@ if ($handle = opendir($rootPath)) {
 
         if ($entry != "." && $entry != "..") {
 
-            //echo "$entry\n";
             $isAccess = strpos($entry, 'access');
 
             if($isAccess !== false) {
