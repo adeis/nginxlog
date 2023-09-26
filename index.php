@@ -54,6 +54,15 @@ $patterns = [
 
 // Memecah log menjadi baris-baris
 $logLines = explode("\n", trim($log));
+
+// maksimal
+$max = count($logLines);
+$isMax = in_array($limit, ["max","all", 0]);
+if($isMax) {
+    $limit = $max;
+} else {
+    $limit = (int) $limit;
+}
 ?>
 <!doctype html>
 <html lang="en">
